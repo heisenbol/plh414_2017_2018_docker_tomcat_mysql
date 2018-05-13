@@ -1,0 +1,23 @@
+version: '2'
+services:
+  db:
+    image: mysql:5.7
+    env_file:
+      - db-variables.env
+    ports:
+      - "3306:3306"
+    restart: unless-stopped
+    volumes:
+      - ./dbinitscripts:/docker-entrypoint-initdb.d
+      - ./mysqldatadir:/var/lib/mysql
+
+  web:
+    image: tomcat:9.0
+    ports:
+      - "80:8080"
+    restart: unless-stopped
+    volumes:
+      - ./demotomcatmysql.war:/usr/local/tomcat/webapps/demotomcatmysql.war
+      - ./filedatadir:/opt/datadir
+    env_file:
+      - web-variables.env

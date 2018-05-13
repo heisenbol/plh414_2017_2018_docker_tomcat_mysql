@@ -1,0 +1,6 @@
+<Context  reloadable="true">
+  <Resource name="jdbc/dbressource" auth="Container" type="javax.sql.DataSource"
+               maxTotal="10" maxIdle="30" maxWaitMillis="10000"
+               username="${jdbc.username}" password="${jdbc.password}" driverClassName="com.mysql.jdbc.Driver"
+               url="jdbc:mysql://db:3306/${jdbc.dbname}?autoReconnect=true&amp;useSSL=false"/>
+</Context>
